@@ -43,7 +43,7 @@ If you don't have installed these python3 modules:
 **Install Python:**
 1. Navigate to https://www.python.org/downloads/windows/.
 2. Select Python version you want to download.
-3. Select file you want to download (eg. Windows x86-64 web-based installer)
+3. Select file you want to download (e.g. Windows x86-64 web-based installer)
 4. Run python installer.
 - [x] Add Python 3.X to PATH
 - *Note: X stands for version number*
