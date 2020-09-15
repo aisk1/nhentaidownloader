@@ -14,7 +14,7 @@ Example (download pages from page 18 to last page):
 
 Example (download pages from 18 to page 21):
 - `python3 nhentaidownloader.py 175769 18 21`
-###Windows
+### Windows
 Syntax:
 - `python nhentaidownloader.py <DIGIT-CODE> [FIRST-PAGE [LAST-PAGE]]`
 
