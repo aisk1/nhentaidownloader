@@ -1,7 +1,7 @@
 ![nhentaidownloader image](screenshots/nhentaidownloader.png)
 Software to download nhentai images without torrent.
 ## Usage
-###Linux
+### Linux
 Syntax:
 - `python3 nhentaidownloader.py <DIGIT-CODE> [FIRST-PAGE [LAST-PAGE]]`
 
