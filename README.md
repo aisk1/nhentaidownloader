@@ -1,6 +1,6 @@
 ![nhentaidownloader image](screenshots/nhentaidownloader.png)
 
-Software to download nhentai images without torrent.
+Script to download nhentai images without torrent.
 ## Usage
 ### Linux
 Syntax:
