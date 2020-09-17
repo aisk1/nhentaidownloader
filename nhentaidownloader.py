@@ -6,25 +6,37 @@ import urllib.request
 from termcolor import colored, cprint
 # PARAMETER CHECK
 if(len(sys.argv) < 2):
-    cprint(f"Usage: {sys.argv[0]} <DIGIT-CODE> [FIRST-PAGE [LAST-PAGE]]", "yellow")
+    cprint(
+        f"Usage: {sys.argv[0]} <DIGIT-CODE> [FIRST-PAGE [LAST-PAGE]]",
+        "yellow")
     exit()
 elif(not sys.argv[1].isdigit()):
-    cprint(f"ERROR! \"{sys.argv[1]}\" contains other characters than only numbers!", "red")
+    cprint(
+        f"ERROR! \"{sys.argv[1]}\" contains other characters than only numbers!",
+        "red")
     exit()
 elif(len(sys.argv) == 3):
     if(not sys.argv[2].isdigit() or int(sys.argv[2]) < 1):
-        cprint(f"ERROR! \"{sys.argv[2]}\" contains other characters than only numbers or is lower than 1!", "red")
+        cprint(
+            f"ERROR! \"{sys.argv[2]}\" contains other characters than only numbers or is lower than 1!",
+            "red")
         exit()
 elif(len(sys.argv) == 4):
     if(not sys.argv[2].isdigit() or not sys.argv[3].isdigit() or int(sys.argv[2]) < 1 or int(sys.argv[3]) < 1):
-        cprint(f"ERROR! \"{sys.argv[2]}\" or \"{sys.argv[3]}\" contains other characters than only numbers or is lower than 1!", "red")
+        cprint(
+            f"ERROR! \"{sys.argv[2]}\" or \"{sys.argv[3]}\" contains other characters than only numbers or is lower than 1!",
+            "red")
         exit()
     else:
         if(int(sys.argv[2]) > int(sys.argv[3])):
-            cprint(f"ERROR! {{FIRST-PAGE}}({sys.argv[2]}) is bigger than {{LAST-PAGE}}({sys.argv[3]})!", "red")
+            cprint(
+                f"ERROR! {{FIRST-PAGE}}({sys.argv[2]}) is bigger than {{LAST-PAGE}}({sys.argv[3]})!",
+                "red")
             exit()
 elif(len(sys.argv) > 4):
-    cprint(f"Usage: {sys.argv[0]} <DIGIT-CODE> [FIRST-PAGE [LAST-PAGE]]", "yellow")
+    cprint(
+        f"Usage: {sys.argv[0]} <DIGIT-CODE> [FIRST-PAGE [LAST-PAGE]]",
+        "yellow")
 # Variables
 create_dir = os.getcwd() + "/" + sys.argv[1]
 url = "https://nhentai.net/g/" + str(sys.argv[1]) + "/"
@@ -51,7 +63,7 @@ def CreateDirectory():
 def RequestPage():
     response = requests.get(url)
     if(response.status_code < 400):
-        cprint(f"{url} Connection etablished({response.status_code}).", "green")
+        cprint(f"{url} Connection etablished.({response.status_code})", "green")
         GetPageCount(response.text)
     else:
         cprint(f"{url} Connection failed!({response.status_code})", "red")
@@ -72,6 +84,7 @@ def GetPageCount(html_source):
 
 
 def RequestSpecificPage(page_count):
+
     if(len(sys.argv) == 2):
         page_min = 1
         page_cur = 1
@@ -91,18 +104,32 @@ def RequestSpecificPage(page_count):
     while page_cur <= page_max:
         page_response = requests.get(url + str(page_cur))
         if(page_response.status_code < 400):
-            cprint(f"{url + str(page_cur)} Connection etablished.({page_response.status_code})", "green")
+            cprint(
+                f"{url + str(page_cur)} Connection etablished.({page_response.status_code})",
+                "green")
             img_src = GetImageSource(page_response.text)
+
             cprint(f"Downloading image from {img_src} {i}/{j}", "white")
+            extension = "." + img_src[-3] + img_src[-2] + img_src[-1]
+
             output_img_name = str(page_cur)
+
+            var0 = "0" * (len(str(page_count)) - len(str(output_img_name)))
+
             urllib.request.urlretrieve(
-                img_src, create_dir + "/" + output_img_name + ".jpg")
-            cprint(f"Image {page_cur} out of {page_max} downloaded! \"{create_dir}/{output_img_name}.jpg\"", "green")
+                img_src, create_dir + "/" + var0 + output_img_name + extension)
+            cprint(
+                f"Image {page_cur} out of {page_max} downloaded! \"{create_dir}/{var0}{output_img_name}.jpg\"",
+                "green")
         else:
-            cprint(f"{url + str(i)} Image download failed!({page_response.status_code})", "red")
+            cprint(
+                f"{url + str(i)} Image download failed!({page_response.status_code})",
+                "red")
         page_cur += 1
         i += 1
-    cprint(f"Finished! Downloaded files can be found in \"{create_dir}\"", "yellow")
+    cprint(
+        f"Finished! Downloaded files can be found in \"{create_dir}\"",
+        "yellow")
 
 
 def GetImageSource(html):
