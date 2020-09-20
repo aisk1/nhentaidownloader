@@ -111,7 +111,7 @@ def RequestSpecificPage(page_count):
         if(page_response.status_code < 400):
             cprint(
                 f"{url + str(page_cur)} Connection etablished.({page_response.status_code})",
-                "green")
+                "cyan")
             img_src = GetImageSource(page_response.text)
             cprint(f"Downloading image from {img_src} {i}/{j}", "white")
             extension = "." + img_src[-3] + img_src[-2] + img_src[-1]
