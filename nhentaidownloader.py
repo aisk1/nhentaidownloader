@@ -69,7 +69,7 @@ def CreateDirectory():
 def RequestPage():
     response = requests.get(url)
     if(response.status_code < 400):
-        cprint(f"{url} Connection etablished.({response.status_code})", "green")
+        cprint(f"{url} Connection established.({response.status_code})", "cyan")
         GetPageCount(response.text)
     else:
         cprint(f"{url} Connection failed!({response.status_code})", "red")
